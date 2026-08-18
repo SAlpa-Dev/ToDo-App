@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow - To Do App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">✓</div>
+                <h1>To-Do List</h1>
+            </div>
+
+            <nav class="navigation">
+                <div class="nav-title">Tasks</div>
+
+                <a href="#" class="nav-item active">
+                    <span>📋</span>
+                    <span>All Tasks</span>
+                </a>
+
+                <a href="#" class="nav-item">
+                    <span>📅</span>
+                    <span>Today</span>
+                </a>
+
+                <a href="#" class="nav-item">
+                    <span>⏰</span>
+                    <span>Upcoming</span>
+                </a>
+
+                <a href="#" class="nav-item">
+                    <span>✅</span>
+                    <span>Completed</span>
+                </a>
+            </nav>
+
+            <nav class="categories">
+                <div class="nav-title">Categories</div>
+
+                <a href="#" class="nav-item">
+                    <span class="category-dot work"></span>
+                    <span>Work</span>
+                </a>
+
+                <a href="#" class="nav-item">
+                    <span class="category-dot personal"></span>
+                    <span>Personal</span>
+                </a>
+
+                <a href="#" class="nav-item">
+                    <span class="category-dot study"></span>
+                    <span>Study</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <button class="sidebar-button">
+                    <span>⚙️</span>
+                    <span>Settings</span>
+                </button>
+
+                <button class="sidebar-button">
+                    <span>❓</span>
+                    <span>Help</span>
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <div class="header-left">
+                    <h2>My Tasks</h2>
+                    <p>Stay organized and get things done.</p>
+                </div>
+
+                <div class="header-right">
+                    <div class="search-box">
+                        <span>🔍</span>
+                        <input type="text" id="searchInput" placeholder="Search tasks...">
+                    </div>
+
+                    <button class="icon-button">🔔</button>
+
+                    <div class="profile">
+                        <div class="profile-image">SK</div>
+                        <div class="profile-info">
+                            <strong>Sujeet</strong>
+                            <span>My Account</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <section class="stats">
+                <div class="stat-card">
+                    <div class="stat-icon">📋</div>
+                    <div class="stat-info">
+                        <span>Total Tasks</span>
+                        <strong id="totalTasks">0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">✓</div>
+                    <div class="stat-info">
+                        <span>Completed</span>
+                        <strong id="completedTasks">0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">⏳</div>
+                    <div class="stat-info">
+                        <span>Remaining</span>
+                        <strong id="remainingTasks">0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-info">
+                        <span>Progress</span>
+                        <strong id="progressPercentage">0%</strong>
+                    </div>
+                </div>
+            </section>
+
+            <section class="add-task-section">
+                <div class="section-header">
+                    <h3>Add New Task</h3>
+                    <p>What do you need to accomplish?</p>
+                </div>
+
+                <div class="task-form">
+                    <input type="text" id="taskInput" placeholder="Enter your task...">
+
+                    <select id="categoryInput">
+                        <option value="">Category</option>
+                        <option value="work">Work</option>
+                        <option value="personal">Personal</option>
+                        <option value="study">Study</option>
+                    </select>
+
+                    <select id="priorityInput">
+                        <option value="">Priority</option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+
+                    <input type="date" id="dateInput" placeholder="dd-mm-yyyy">
+
+                    <button class="add-button" id="addTaskBtn">+ Add Task</button>
+                </div>
+            </section>
+
+            <section class="task-section">
+                <div class="task-section-header">
+                    <div class="section-header">
+                        <h3>Tasks</h3>
+                        <p>Manage your tasks</p>
+                    </div>
+
+                    <div class="filters">
+                        <button class="filter active" data-filter="all">All</button>
+                        <button class="filter" data-filter="active">Active</button>
+                        <button class="filter" data-filter="completed">Completed</button>
+                    </div>
+                </div>
+
+                <div class="task-list" id="taskList"></div>
+
+                <div class="empty-state" id="emptyState">
+                    <div class="empty-icon">📋</div>
+                    <h4>No tasks found</h4>
+                    <p>Add a new task to get started.</p>
+                </div>
+
+                <div class="task-footer">
+                    <span><strong id="taskCount">0</strong> tasks remaining</span>
+                    <button id="clearCompleted">Clear Completed</button>
+                </div>
+            </section>
+
+            <section class="analytics-section">
+                <div class="analytics-header">
+                    <div class="analytics-title">
+                        <h3>Task Analytics</h3>
+                        <p>Track your productivity and task progress</p>
+                    </div>
+
+                    <button class="add-task-btn">📅 This Week</button>
+                </div>
+
+                <div class="chart-legend">
+                    <span class="legend-title">Task Status</span>
+
+                    <div class="legend-item">
+                        <span class="legend-line completed-line"><span class="legend-dot"></span></span>
+                        <span>Completed</span>
+                    </div>
+
+                    <div class="legend-item">
+                        <span class="legend-line active-line"><span class="legend-dot"></span></span>
+                        <span>Active</span>
+                    </div>
+
+                    <div class="legend-item">
+                        <span class="legend-line planned-line"><span class="legend-dot"></span></span>
+                        <span>Planned</span>
+                    </div>
+                </div>
+
+                <div class="weekly-chart">
+                    <div class="weekly-chart-area">
+                        <div class="chart-grid"></div>
+                        <div class="weekly-bars" id="weeklyBars"></div>
+                    </div>
+                    <div class="week-days" id="weekDays"></div>
+                </div>
+
+                <div class="weekly-summary">
+                    <div class="weekly-summary-item">
+                        <div class="summary-icon purple">✓</div>
+                        <div>
+                            <span>Completed</span>
+                            <strong id="weeklyCompleted">0</strong>
+                        </div>
+                    </div>
+
+                    <div class="weekly-summary-item">
+                        <div class="summary-icon blue">●</div>
+                        <div>
+                            <span>Active</span>
+                            <strong id="weeklyActive">0</strong>
+                        </div>
+                    </div>
+
+                    <div class="weekly-summary-item">
+                        <div class="summary-icon yellow">★</div>
+                        <div>
+                            <span>Planned</span>
+                            <strong id="weeklyPlanned">0</strong>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div class="modal" id="editModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Task</h3>
+                <button class="close-modal" id="closeModal">✕</button>
+            </div>
+
+            <div class="modal-body">
+                <label>Task</label>
+                <input type="text" id="editTaskInput">
+
+                <label>Category</label>
+                <select id="editCategoryInput">
+                    <option value="work">Work</option>
+                    <option value="personal">Personal</option>
+                    <option value="study">Study</option>
+                </select>
+
+                <label>Priority</label>
+                <select id="editPriorityInput">
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+            </div>
+
+            <div class="modal-footer">
+                <button class="cancel-button" id="cancelEdit">Cancel</button>
+                <button class="save-button" id="saveEdit">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
